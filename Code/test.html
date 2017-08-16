@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>贪吃蛇</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>    
+    <style>  
+    #cen{  
+        position: fixed;
+        margin: auto;
+        width: 300px;   
+        height: 200px; 
+        font-size: 20px;
+        font-weight: bold;
+        text-align: left;
+        top: 0px;   
+        left: 0px;   
+        right: 0px;   
+        bottom: 0px;   
+        padding: 20px;
+        border-radius:15px
+    }
+    </style>
+</head>
+<body>
+
+<div id="cen">
+  <h1>{{ message }}</h1>
+  <button class="btn btn-danger" v-on:click="reverseMessage">逆转</button>
+</div>
+<script>
+new Vue({
+  el: '#cen',
+  data: {
+    message: '自古深情留不住 唯有套路得人心'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
+</script>
+</body>
+</html>

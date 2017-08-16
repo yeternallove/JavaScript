@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>贪吃蛇</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<script src="./js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			<a class="navbar-brand" href="game.html">贪吃蛇</a>
+			</div>			
+		</div>
+	</nav>
+<div id="tab"></div>
+<script>
+    var notes = JSON.parse(localStorage.getItem("mytest"))||{"admin":["admin",1,1]};
+    var list = [],max = 0,name = "admin";
+    for(var name in notes){
+        list[notes[name][2]]=name;
+        if(notes[name][2]>max)max =notes[name][2];
+    }
+    var proPanel = [];
+    proPanel.push('<table class="table"><thead><tr><th>排名</th><th>用户名</th><th>得分</th></tr></thead><tbody>');
+    for(var i=1;i<=max;i++){
+        name =list[i];
+        proPanel.push('<tr>'+'<td>'+notes[name][2]+'</td><td>'+name+'</td><td>'+notes[name][1]+'</td>'+'</tr>');
+    }
+    proPanel.push("</tbody></table>");
+    $("#tab")[0].innerHTML = proPanel.join("");
+</script>
+</body>
+</html>

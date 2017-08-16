@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<style>  
+body{  
+margin-left:auto;  
+margin-right:auto; 
+margin-TOP:100PX; 
+width:20em;  
+}
+</style>
+<body>
+<!--下面是用户名输入框-->
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">@</span>
+  <input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+</div>
+<br>
+<!--下面是密码输入框-->
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">@</span>
+  <input id="passWord" type="password" class="form-control" placeholder="输入密码" aria-describedby="basic-addon1">
+</div>
+<br>
+<!--下面是登陆按钮,包括颜色控制-->
+<button type="button" style="width:280px;" class="btn btn-danger" onclick="login()">登 录</button>
+<bar>
+<div style="width:280px;">
+<button type="button" style="width:100px; float:left;" class="btn btn-link" onclick="reg()">注 册</button>
+<button type="button" style="width:100px; float:right;" class="btn btn-link" onclick="cancel()">取 消</button>
+</div>
+<script>
+  var name = "",pass = "",list = [],max = 0,n;
+  var notes = JSON.parse(localStorage.getItem("mytest"))||{"admin":["admin",1,1]};
+  for(var name in notes){
+     list[notes[name][2]]=name;
+     if(notes[name][2]>max)max =notes[name][2];
+  }
+  var ylogin = JSON.parse(localStorage.getItem("login"))||{};
+  if(ylogin !=null){
+    for(var name in ylogin){
+      if(ylogin.hasOwnProperty(name)){
+        document.getElementById("userName").value = name;
+        document.getElementById("passWord").value = ylogin[name][0];
+        if (notes[name][1] != ylogin[name][1]){          
+          if(ylogin[name][2] == 0) ylogin[name][2] = max +1;
+          n=ylogin[name][2];
+          while(n-1>0&&notes[list[n-1]][1]<ylogin[name][1]){ylogin[name][2]--;notes[list[n-1]][2] = n;n--;}
+          notes[name] =ylogin[name];
+        }
+        localStorage.setItem("mytest",JSON.stringify(notes));
+        break;
+      }    
+    }
+  }
+  function login(){
+    name = document.getElementById("userName").value;
+    pass = document.getElementById("passWord").value;
+    if(name.length >20||name.length <4){
+       alert("用户名错误（请查看长度）");
+       return;
+    }
+    if(name in notes){
+      if(notes[name][0]== pass){
+        ylogin ={};
+        ylogin[name] = notes[name];
+        localStorage.setItem("login",JSON.stringify(ylogin));
+        alert("登录成功");
+        window.location.href='game.html';
+      }
+      else{
+        alert("账号不存在或是密码错误");
+      }
+    }else{
+      alert("账号不存在或是密码错误");
+    }
+  }
+  function reg(){
+    window.location.href='registered.html';
+  }
+  function cancel(){
+    window.location.href='game.html';
+  }
+</script>
+</body>
+</head>

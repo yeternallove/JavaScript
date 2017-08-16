@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>贪吃蛇</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>		
+    <link rel="stylesheet" href="./css/mycss.css">
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<script src="./js/bootstrap.min.js"></script>
+</head>
+<body onload="init();">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			<a class="navbar-brand" href="#">贪吃蛇</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+			<li><a href="login.html" ><span class="glyphicon glyphicon-user" style="display:none" id="myname"></span></a></li>
+			<li><a href="registered.html" id ="areg"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+			<li><a href="login.html" id ="alogin"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+			<li><a href="ranking.html" style="display:none" id ="arank"><span class="glyphicon glyphicon-list"></span>排行榜</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="backDiv">
+		<canvas id="cPanel" width="600" height="500" style="position:relative; float:left; background:Black"></canvas>
+		<div class="display">
+		  <div id="scoreDiv">分数：0</div><br/>
+			<div id="prompt"></div>
+		</div>
+		<div id="operator">
+			<span class="btn btn-info">选择关卡：</span>
+			<select id="pass" onchange="barrer();">
+				<option value="0">默认 </option>
+				<option value="1">关卡1</option>
+				<option value="2">关卡2</option>
+				<option value="3">关卡3</option>
+			</select>
+			&nbsp&nbsp
+			<span class="btn btn-success">速度：</span>
+			<select id="rate">
+				<option value="500">慢</option>
+				<option value="250">中</option>
+				<option value="130">快</option>
+			</select>
+			&nbsp&nbsp
+			<button id = "start" type="button" class="btn btn-warning" value="开始" onclick="start();">开始</button>
+			&nbsp&nbsp
+			<button id = "restart" type="button" class="btn btn-danger" value="重玩" onclick="restart();" disabled="disabled">重置</button>
+		</div>
+		<div id="result" style="display:none;"></div>
+		<img id="maintu" src="img/main.jpg" alt="The Tulip " style="display:none;"/>
+	</div>
+	<script type="text/javascript" src="./js/snake.js"/></script>
+</body>
+</html>
